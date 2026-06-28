@@ -1,0 +1,1 @@
+export function PdfResult({pdfPath}:{pdfPath?:string}){if(!pdfPath)return null;return <div className="panel"><h2>PDF gerado</h2><a className="link" href={pdfPath} target="_blank">Baixar apresentação</a></div>}

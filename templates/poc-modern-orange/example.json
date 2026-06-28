@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "clientName": "Colégio Objetivo",
+    "issuerName": "Tecno School Center",
+    "audience": "Diretoria",
+    "consultantName": "Rodolfo Silva",
+    "consultantRole": "Solutions Consultant"
+  },
+  "cover": {
+    "eyebrow": "Proposta comercial",
+    "title": "Contact Center com Recepcionista IA",
+    "subtitle": "Solução para qualificar o atendimento telefônico do Colégio Objetivo."
+  },
+  "agenda": {
+    "title": "O que vamos cobrir",
+    "items": [
+      "Contexto e desafio",
+      "Solução proposta",
+      "Plano comercial"
+    ]
+  },
+  "context": {
+    "title": "Atendimento com mais triagem e direção",
+    "cards": [
+      {
+        "title": "Entrada telefônica",
+        "description": "Organiza chamadas recebidas e reduz dependência de repasses manuais."
+      },
+      {
+        "title": "Intenção do contato",
+        "description": "Entende demandas recorrentes antes de direcionar ao departamento."
+      },
+      {
+        "title": "Visão executiva",
+        "description": "Proposta objetiva para decisão da diretoria."
+      }
+    ]
+  },
+  "solution": {
+    "title": "Recepcionista IA integrada ao contact center",
+    "description": "Atendimento telefônico com entendimento de intenção, triagem e direcionamento por departamento.",
+    "cards": [
+      {
+        "title": "Triagem inicial",
+        "description": "Classifica o motivo do contato com linguagem natural."
+      },
+      {
+        "title": "Direcionamento",
+        "description": "Encaminha para o setor adequado com mais contexto."
+      },
+      {
+        "title": "Operação assistida",
+        "description": "15 usuários e 1 supervisor para acompanhar a rotina."
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Benefícios esperados",
+    "cards": [
+      {
+        "title": "Menos espera",
+        "description": "Fluxo inicial mais claro para quem liga ao colégio."
+      },
+      {
+        "title": "Padronização",
+        "description": "Atendimento inicial consistente entre departamentos."
+      },
+      {
+        "title": "Escalabilidade",
+        "description": "Licenças preparadas para operação diária da equipe."
+      }
+    ]
+  },
+  "commercial": {
+    "title": "Plano comercial proposto",
+    "monthly_label": "Mensalidade",
+    "monthly_total": "R$ 1.758,40",
+    "setup_label": "Implantação",
+    "implementation_final": "R$ 1.500,00",
+    "details": "16 licenças a R$ 109,90; 15 aparelhos IA Link P31G grátis.",
+    "validity": "Validade: 30 dias"
+  },
+  "implementation": {
+    "title": "Escopo de implantação",
+    "cards": [
+      {
+        "title": "Configuração",
+        "description": "Parametrização dos fluxos de atendimento e departamentos."
+      },
+      {
+        "title": "Ativação",
+        "description": "Preparação das licenças e aparelhos incluídos na proposta."
+      },
+      {
+        "title": "Acompanhamento",
+        "description": "Suporte inicial para ajuste fino da operação."
+      }
+    ]
+  },
+  "next": {
+    "title": "Próximos passos",
+    "cards": [
+      {
+        "title": "Validar proposta",
+        "description": "Confirmar escopo, valores e validade comercial."
+      },
+      {
+        "title": "Planejar início",
+        "description": "Definir responsáveis e agenda de implantação."
+      },
+      {
+        "title": "Formalizar aceite",
+        "description": "Avançar para contratação e ativação do projeto."
+      }
+    ]
+  },
+  "closing": {
+    "title": "Obrigado",
+    "subtitle": "Tecno School Center à disposição para apoiar a evolução do atendimento."
+  }
+}

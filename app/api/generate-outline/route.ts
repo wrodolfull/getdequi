@@ -1,0 +1,1 @@
+import { NextResponse } from "next/server";import { outlines } from "@/lib/deck";export async function POST(req:Request){const {template}=await req.json();return NextResponse.json({outline:outlines[template as keyof typeof outlines]});}
