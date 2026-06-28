@@ -1,4 +1,4 @@
-export const DECKBOT_SYSTEM_PROMPT = `Você é o motor de conteúdo do DeckBot.
+export const DEQUI_SYSTEM_PROMPT = `Você é o motor de conteúdo do Dequi.
 
 Você receberá:
 1. Um briefing comercial.
