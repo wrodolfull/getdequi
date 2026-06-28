@@ -1,0 +1,5 @@
+node_modules
+.next
+.env*.local
+outputs/pdfs/*.pdf
+public/outputs/pdfs/*.pdf
