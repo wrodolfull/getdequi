@@ -16,29 +16,87 @@ export function Chat() {
   const [pdfPath, setPdfPath] = useState<string>();
   const [busy, setBusy] = useState(false);
   const [audioStatus, setAudioStatus] = useState<string>();
+  const [isRecording, setIsRecording] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const recordedChunksRef = useRef<Blob[]>([]);
+
+  function resetGeneratedContent() {
+    setInterpretation(undefined);
+    setOutline([]);
+    setPdfPath(undefined);
+  }
 
   async function transcribeAudio(file: File) {
     setBusy(true);
     setAudioStatus("Transcrevendo áudio com Whisper...");
-    setInterpretation(undefined);
-    setOutline([]);
-    setPdfPath(undefined);
+    resetGeneratedContent();
 
-    const formData = new FormData();
-    formData.append("audio", file);
-    const response = await fetch("/api/transcribe-briefing", { method: "POST", body: formData });
-    const data = await response.json();
+    try {
+      const formData = new FormData();
+      formData.append("audio", file);
+      const response = await fetch("/api/transcribe-briefing", { method: "POST", body: formData });
+      const data = await response.json();
 
-    if (!response.ok) {
-      setAudioStatus(data.error || "Não foi possível transcrever o áudio.");
+      if (!response.ok) {
+        setAudioStatus(data.error || "Não foi possível transcrever o áudio.");
+        return;
+      }
+
+      setBriefing(data.briefing || "");
+      setAudioStatus("Áudio transcrito. Revise o briefing antes de interpretar.");
+    } catch {
+      setAudioStatus("Não foi possível transcrever o áudio.");
+    } finally {
       setBusy(false);
+    }
+  }
+
+  async function startRecording() {
+    if (!navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === "undefined") {
+      setAudioStatus("Seu navegador não suporta gravação de áudio direta. Use a importação de arquivo.");
       return;
     }
 
-    setBriefing(data.briefing || "");
-    setAudioStatus("Áudio transcrito. Revise o briefing antes de interpretar.");
-    setBusy(false);
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const recorder = new MediaRecorder(stream);
+      recordedChunksRef.current = [];
+
+      recorder.ondataavailable = event => {
+        if (event.data.size > 0) recordedChunksRef.current.push(event.data);
+      };
+
+      recorder.onstop = () => {
+        stream.getTracks().forEach(track => track.stop());
+        const mimeType = recorder.mimeType || "audio/webm";
+        const extension = mimeType.includes("mp4") ? "m4a" : "webm";
+        const blob = new Blob(recordedChunksRef.current, { type: mimeType });
+
+        if (!blob.size) {
+          setAudioStatus("Nenhum áudio foi capturado. Tente gravar novamente.");
+          return;
+        }
+
+        const file = new File([blob], `briefing-gravado.${extension}`, { type: mimeType });
+        transcribeAudio(file);
+      };
+
+      mediaRecorderRef.current = recorder;
+      recorder.start();
+      setIsRecording(true);
+      setAudioStatus("Gravando áudio... clique em Parar gravação para transcrever.");
+    } catch {
+      setAudioStatus("Não foi possível acessar o microfone. Verifique a permissão do navegador.");
+    }
+  }
+
+  function stopRecording() {
+    if (mediaRecorderRef.current?.state === "recording") {
+      mediaRecorderRef.current.stop();
+    }
+    setIsRecording(false);
+    setAudioStatus("Gravação finalizada. Preparando transcrição...");
   }
 
   async function interpret() {
@@ -78,19 +136,21 @@ export function Chat() {
           id="briefing-audio"
           type="file"
           accept="audio/*,.mp3,.mp4,.mpeg,.mpga,.m4a,.wav,.webm"
-          disabled={busy}
+          disabled={busy || isRecording}
           onChange={event => {
             const file = event.target.files?.[0];
             if (file) transcribeAudio(file);
             event.target.value = "";
           }}
         />
-        <button type="button" className="secondaryButton" disabled={busy} onClick={() => fileInputRef.current?.click()}>Escolher áudio</button>
+        <button type="button" className="secondaryButton" disabled={busy || isRecording} onClick={() => fileInputRef.current?.click()}>Importar áudio</button>
+        <button type="button" className="secondaryButton" disabled={busy || isRecording} onClick={startRecording}>Gravar áudio</button>
+        <button type="button" className="dangerButton" disabled={!isRecording} onClick={stopRecording}>Parar gravação</button>
       </div>
       {audioStatus && <p className="muted">{audioStatus}</p>}
       <label className="fieldLabel" htmlFor="briefing-text">Briefing em texto</label>
       <textarea id="briefing-text" value={briefing} onChange={e => setBriefing(e.target.value)} />
-      <p><button onClick={interpret} disabled={busy || !briefing.trim()}>{busy ? "Processando..." : "Interpretar briefing"}</button></p>
+      <p><button onClick={interpret} disabled={busy || isRecording || !briefing.trim()}>{busy ? "Processando..." : "Interpretar briefing"}</button></p>
     </div>
     <BriefingSummary interpretation={interpretation} />
     {interpretation && <TemplateSelector value={template} onChange={t => { setTemplate(t); loadOutline(t); }} />}
