@@ -61,3 +61,69 @@ export function validateCommercialSoberMono(content: AnyRecord): ValidationError
   return errors;
 }
 
+
+export type ValidationResult = {
+  valid: boolean;
+  errors: ValidationError[];
+};
+
+export function getByPath(content: AnyRecord, path: string) {
+  return path
+    .replace(/\[(\d+)\]/g, ".$1")
+    .split(".")
+    .filter(Boolean)
+    .reduce<unknown>((value, key) => {
+      if (value && typeof value === "object") return (value as AnyRecord)[key];
+      return undefined;
+    }, content);
+}
+
+export function truncateToSchema(schema: AnyRecord, content: AnyRecord): AnyRecord {
+  const fields = schema.fields as Record<string, { maxChars?: number }> | undefined;
+  if (!fields) return content;
+
+  const clone = structuredClone(content);
+
+  for (const [path, field] of Object.entries(fields)) {
+    const maxChars = field.maxChars;
+    const value = getByPath(clone, path);
+
+    if (typeof value === "string" && typeof maxChars === "number" && value.length > maxChars) {
+      const segments = path.replace(/\[(\d+)\]/g, ".$1").split(".").filter(Boolean);
+      const last = segments.pop();
+      const parent = segments.reduce<unknown>((current, key) => {
+        if (current && typeof current === "object") return (current as AnyRecord)[key];
+        return undefined;
+      }, clone);
+
+      if (last && parent && typeof parent === "object") {
+        (parent as AnyRecord)[last] = value.slice(0, maxChars);
+      }
+    }
+  }
+
+  return clone;
+}
+
+export function validateContent(schema: AnyRecord, content: AnyRecord): ValidationResult {
+  const schemaErrors: ValidationError[] = [];
+  const fields = schema.fields as Record<string, { maxChars?: number; required?: boolean }> | undefined;
+
+  if (fields) {
+    for (const [path, field] of Object.entries(fields)) {
+      const value = getByPath(content, path);
+
+      if (field.required && (value === undefined || value === null || value === "")) {
+        schemaErrors.push({ path, message: "Campo obrigatório não informado" });
+      }
+
+      if (typeof field.maxChars === "number") {
+        pushIfTooLong(schemaErrors, path, value, field.maxChars);
+      }
+    }
+  } else if (schema.template === "commercial-sober-mono") {
+    schemaErrors.push(...validateCommercialSoberMono(content));
+  }
+
+  return { valid: schemaErrors.length === 0, errors: schemaErrors };
+}
