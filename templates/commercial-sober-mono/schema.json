@@ -1,253 +1,36 @@
 {
   "template": "commercial-sober-mono",
-  "maxSlides": 9,
-  "fields": {
-    "cover.eyebrow": {
-      "type": "text",
-      "maxChars": 140,
-      "maxLines": 3
-    },
-    "cover.title": {
-      "type": "text",
-      "maxChars": 68,
-      "maxLines": 2
-    },
-    "cover.subtitle": {
-      "type": "text",
-      "maxChars": 68,
-      "maxLines": 2
-    },
-    "agenda.title": {
-      "type": "text",
-      "maxChars": 68,
-      "maxLines": 2
-    },
-    "context.title": {
-      "type": "text",
-      "maxChars": 68,
-      "maxLines": 2
-    },
-    "solution.title": {
-      "type": "text",
-      "maxChars": 68,
-      "maxLines": 2
-    },
-    "solution.description": {
-      "type": "text",
-      "maxChars": 140,
-      "maxLines": 3
-    },
-    "benefits.title": {
-      "type": "text",
-      "maxChars": 68,
-      "maxLines": 2
-    },
-    "commercial.title": {
-      "type": "text",
-      "maxChars": 68,
-      "maxLines": 2
-    },
-    "commercial.monthly_label": {
-      "type": "text",
-      "maxChars": 140,
-      "maxLines": 3
-    },
-    "commercial.monthly_total": {
-      "type": "text",
-      "maxChars": 140,
-      "maxLines": 3
-    },
-    "commercial.setup_label": {
-      "type": "text",
-      "maxChars": 140,
-      "maxLines": 3
-    },
-    "commercial.implementation_final": {
-      "type": "text",
-      "maxChars": 140,
-      "maxLines": 3
-    },
-    "commercial.details": {
-      "type": "text",
-      "maxChars": 140,
-      "maxLines": 3
-    },
-    "commercial.validity": {
-      "type": "text",
-      "maxChars": 140,
-      "maxLines": 3
-    },
-    "implementation.title": {
-      "type": "text",
-      "maxChars": 68,
-      "maxLines": 2
-    },
-    "next.title": {
-      "type": "text",
-      "maxChars": 68,
-      "maxLines": 2
-    },
-    "closing.title": {
-      "type": "text",
-      "maxChars": 68,
-      "maxLines": 2
-    },
-    "closing.subtitle": {
-      "type": "text",
-      "maxChars": 68,
-      "maxLines": 2
-    },
-    "metadata.issuerName": {
-      "type": "text",
-      "maxChars": 140,
-      "maxLines": 3
-    },
-    "metadata.audience": {
-      "type": "text",
-      "maxChars": 140,
-      "maxLines": 3
-    },
-    "metadata.consultantName": {
-      "type": "text",
-      "maxChars": 140,
-      "maxLines": 3
-    },
-    "metadata.consultantRole": {
-      "type": "text",
-      "maxChars": 140,
-      "maxLines": 3
-    },
-    "context.cards[0].title": {
-      "type": "text",
-      "maxChars": 38
-    },
-    "context.cards[0].description": {
-      "type": "text",
-      "maxChars": 100
-    },
-    "context.cards[1].title": {
-      "type": "text",
-      "maxChars": 38
-    },
-    "context.cards[1].description": {
-      "type": "text",
-      "maxChars": 100
-    },
-    "context.cards[2].title": {
-      "type": "text",
-      "maxChars": 38
-    },
-    "context.cards[2].description": {
-      "type": "text",
-      "maxChars": 100
-    },
-    "solution.cards[0].title": {
-      "type": "text",
-      "maxChars": 38
-    },
-    "solution.cards[0].description": {
-      "type": "text",
-      "maxChars": 100
-    },
-    "solution.cards[1].title": {
-      "type": "text",
-      "maxChars": 38
-    },
-    "solution.cards[1].description": {
-      "type": "text",
-      "maxChars": 100
-    },
-    "solution.cards[2].title": {
-      "type": "text",
-      "maxChars": 38
-    },
-    "solution.cards[2].description": {
-      "type": "text",
-      "maxChars": 100
-    },
-    "benefits.cards[0].title": {
-      "type": "text",
-      "maxChars": 38
-    },
-    "benefits.cards[0].description": {
-      "type": "text",
-      "maxChars": 100
-    },
-    "benefits.cards[1].title": {
-      "type": "text",
-      "maxChars": 38
-    },
-    "benefits.cards[1].description": {
-      "type": "text",
-      "maxChars": 100
-    },
-    "benefits.cards[2].title": {
-      "type": "text",
-      "maxChars": 38
-    },
-    "benefits.cards[2].description": {
-      "type": "text",
-      "maxChars": 100
-    },
-    "implementation.cards[0].title": {
-      "type": "text",
-      "maxChars": 38
-    },
-    "implementation.cards[0].description": {
-      "type": "text",
-      "maxChars": 100
-    },
-    "implementation.cards[1].title": {
-      "type": "text",
-      "maxChars": 38
-    },
-    "implementation.cards[1].description": {
-      "type": "text",
-      "maxChars": 100
-    },
-    "implementation.cards[2].title": {
-      "type": "text",
-      "maxChars": 38
-    },
-    "implementation.cards[2].description": {
-      "type": "text",
-      "maxChars": 100
-    },
-    "next.cards[0].title": {
-      "type": "text",
-      "maxChars": 38
-    },
-    "next.cards[0].description": {
-      "type": "text",
-      "maxChars": 100
-    },
-    "next.cards[1].title": {
-      "type": "text",
-      "maxChars": 38
-    },
-    "next.cards[1].description": {
-      "type": "text",
-      "maxChars": 100
-    },
-    "next.cards[2].title": {
-      "type": "text",
-      "maxChars": 38
-    },
-    "next.cards[2].description": {
-      "type": "text",
-      "maxChars": 100
-    },
-    "agenda.items[0]": {
-      "type": "text",
-      "maxChars": 45
-    },
-    "agenda.items[1]": {
-      "type": "text",
-      "maxChars": 45
-    },
-    "agenda.items[2]": {
-      "type": "text",
-      "maxChars": 45
-    }
-  }
+  "status": "official",
+  "description": "DeckBot Sober Mono — Commercial Proposal v1. Template executivo em preto, branco e cinza, sem ícones, com cards padronizados e slides 16:9 fixos.",
+  "rules": {
+    "maxSlides": 9,
+    "slideSize": { "width": 1280, "height": 720 },
+    "noIcons": true,
+    "noImages": true,
+    "aiCanEditLayout": false,
+    "aiOutput": "json_only"
+  },
+  "limits": {
+    "titleMaxChars": 68,
+    "titleMaxLines": 2,
+    "subtitleMaxChars": 140,
+    "cardTitleMaxChars": 38,
+    "cardDescriptionMaxChars": 100,
+    "agendaItemMaxChars": 48,
+    "bulletMaxChars": 34,
+    "stepMaxChars": 58
+  },
+  "requiredTopLevelFields": [
+    "document", "brand", "cover", "agenda", "objective", "context", "solution", "included", "flow", "commercial", "final", "contact"
+  ],
+  "notesForAI": [
+    "Preencher apenas os campos existentes no example.json.",
+    "Não gerar HTML nem CSS.",
+    "Não criar novos campos.",
+    "Não ultrapassar limites de caracteres.",
+    "Títulos de slide devem caber em no máximo 2 linhas.",
+    "Usar linguagem comercial clara, objetiva e executiva.",
+    "Não inventar dados, cases, métricas ou ROI."
+  ]
 }
+

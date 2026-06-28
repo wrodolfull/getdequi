@@ -1,6 +1,63 @@
-import type { TemplateSchema } from "./types";
-export const GLOBAL_LIMITS = { max_slides: 10, title_max_chars: 68, title_max_lines: 2, subtitle_max_chars: 140, card_title_max_chars: 38, card_description_max_chars: 100, max_cards_per_slide: 6, max_bullets_per_slide: 5, bullet_max_chars: 105 };
-function normalizePath(path: string) { return path.replace(/\[(\d+)\]/g, ".$1"); }
-export function getByPath(obj: Record<string, any>, path: string): any { return normalizePath(path).split(".").reduce((acc, part) => acc == null ? undefined : acc[part], obj); }
-export function validateContent(schema: TemplateSchema, content: Record<string, any>) { const errors: string[] = []; if (schema.maxSlides > GLOBAL_LIMITS.max_slides) errors.push(`Template excede ${GLOBAL_LIMITS.max_slides} slides.`); for (const [path, rules] of Object.entries(schema.fields)) { const value = getByPath(content, path); if (value == null) continue; if (rules.type === "text") { const text = String(value); if (rules.maxChars && text.length > rules.maxChars) errors.push(`${path} excede ${rules.maxChars} caracteres.`); if (rules.maxLines) { const approx = Math.ceil(text.length / 34); if (approx > rules.maxLines) errors.push(`${path} excede ${rules.maxLines} linhas estimadas.`); } } if (rules.type === "array" && Array.isArray(value) && rules.maxItems && value.length > rules.maxItems) errors.push(`${path} excede ${rules.maxItems} itens.`); } return { valid: errors.length === 0, errors }; }
-export function truncateToSchema(schema: TemplateSchema, content: Record<string, any>) { const copy = structuredClone(content); for (const [path, rules] of Object.entries(schema.fields)) { if (rules.type !== "text" || !rules.maxChars) continue; const parts = normalizePath(path).split("."); let target: any = copy; for (const p of parts.slice(0, -1)) target = target?.[p]; const key = parts.at(-1)!; if (target?.[key] && String(target[key]).length > rules.maxChars) target[key] = String(target[key]).slice(0, rules.maxChars - 1).trimEnd() + "…"; } return copy; }
+type AnyRecord = Record<string, any>;
+
+type ValidationError = {
+  path: string;
+  message: string;
+  value?: string;
+};
+
+const LIMITS = {
+  titleMaxChars: 68,
+  subtitleMaxChars: 140,
+  cardTitleMaxChars: 38,
+  cardDescriptionMaxChars: 100,
+  agendaItemMaxChars: 48,
+  bulletMaxChars: 34,
+  stepMaxChars: 58
+};
+
+function pushIfTooLong(errors: ValidationError[], path: string, value: unknown, max: number) {
+  if (typeof value === "string" && value.length > max) {
+    errors.push({ path, message: `Excede limite de ${max} caracteres`, value });
+  }
+}
+
+export function validateCommercialSoberMono(content: AnyRecord): ValidationError[] {
+  const errors: ValidationError[] = [];
+
+  pushIfTooLong(errors, "cover.title_line_1", content.cover?.title_line_1, LIMITS.titleMaxChars);
+  pushIfTooLong(errors, "cover.title_line_2", content.cover?.title_line_2, LIMITS.titleMaxChars);
+  pushIfTooLong(errors, "cover.subtitle", content.cover?.subtitle, LIMITS.subtitleMaxChars);
+
+  content.agenda?.items?.forEach((item: string, i: number) => {
+    pushIfTooLong(errors, `agenda.items.${i}`, item, LIMITS.agendaItemMaxChars);
+  });
+
+  const cardGroups = ["objective", "context", "solution", "included"];
+  for (const group of cardGroups) {
+    content[group]?.cards?.forEach((card: AnyRecord, i: number) => {
+      pushIfTooLong(errors, `${group}.cards.${i}.title`, card.title, LIMITS.cardTitleMaxChars);
+      pushIfTooLong(errors, `${group}.cards.${i}.description`, card.description, LIMITS.cardDescriptionMaxChars);
+    });
+  }
+
+  content.flow?.steps?.forEach((step: AnyRecord, i: number) => {
+    pushIfTooLong(errors, `flow.steps.${i}.title`, step.title, LIMITS.cardTitleMaxChars);
+    pushIfTooLong(errors, `flow.steps.${i}.description`, step.description, LIMITS.cardDescriptionMaxChars);
+  });
+
+  content.commercial?.cards?.forEach((card: AnyRecord, i: number) => {
+    pushIfTooLong(errors, `commercial.cards.${i}.label`, card.label, LIMITS.cardTitleMaxChars);
+    pushIfTooLong(errors, `commercial.cards.${i}.title`, card.title, LIMITS.cardTitleMaxChars);
+    card.bullets?.forEach((bullet: string, j: number) => {
+      pushIfTooLong(errors, `commercial.cards.${i}.bullets.${j}`, bullet, LIMITS.bulletMaxChars);
+    });
+  });
+
+  content.final?.steps?.forEach((step: string, i: number) => {
+    pushIfTooLong(errors, `final.steps.${i}`, step, LIMITS.stepMaxChars);
+  });
+
+  return errors;
+}
+
