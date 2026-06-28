@@ -3,7 +3,8 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "render:example": "node scripts/render-example.mjs"
   },
   "dependencies": {
     "next": "15.3.4",
