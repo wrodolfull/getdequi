@@ -1,9 +1,156 @@
-<section class="slide cover"><div class="kicker">{{cover.eyebrow}}</div><h1 class="title big">{{cover.title}}</h1><p class="subtitle">{{cover.subtitle}}</p><div class="footer"><span>{{metadata.issuerName}}</span><span>{{metadata.audience}}</span></div></section>
-<section class="slide alt"><div class="kicker">Agenda</div><h2 class="title">{{agenda.title}}</h2><div class="grid"><div class="card"><h3>{{agenda.items.0}}</h3></div><div class="card"><h3>{{agenda.items.1}}</h3></div><div class="card"><h3>{{agenda.items.2}}</h3></div></div></section>
-<section class="slide"><div class="kicker">Contexto</div><h2 class="title">{{context.title}}</h2><div class="grid"><div class="card"><h3>{{context.cards.0.title}}</h3><p>{{context.cards.0.description}}</p></div><div class="card"><h3>{{context.cards.1.title}}</h3><p>{{context.cards.1.description}}</p></div><div class="card"><h3>{{context.cards.2.title}}</h3><p>{{context.cards.2.description}}</p></div></div></section>
-<section class="slide alt"><div class="kicker">Solução</div><h2 class="title">{{solution.title}}</h2><p class="subtitle">{{solution.description}}</p><div class="grid"><div class="card"><h3>{{solution.cards.0.title}}</h3><p>{{solution.cards.0.description}}</p></div><div class="card"><h3>{{solution.cards.1.title}}</h3><p>{{solution.cards.1.description}}</p></div><div class="card"><h3>{{solution.cards.2.title}}</h3><p>{{solution.cards.2.description}}</p></div></div></section>
-<section class="slide"><div class="kicker">Benefícios</div><h2 class="title">{{benefits.title}}</h2><div class="grid"><div class="card"><h3>{{benefits.cards.0.title}}</h3><p>{{benefits.cards.0.description}}</p></div><div class="card"><h3>{{benefits.cards.1.title}}</h3><p>{{benefits.cards.1.description}}</p></div><div class="card"><h3>{{benefits.cards.2.title}}</h3><p>{{benefits.cards.2.description}}</p></div></div></section>
-<section class="slide alt"><div class="kicker">Comercial</div><h2 class="title">{{commercial.title}}</h2><div class="grid two"><div class="card"><h3>{{commercial.monthly_label}}</h3><p class="big">{{commercial.monthly_total}}</p></div><div class="card"><h3>{{commercial.setup_label}}</h3><p class="big">{{commercial.implementation_final}}</p></div></div><div class="footer"><span>{{commercial.details}}</span><span>{{commercial.validity}}</span></div></section>
-<section class="slide"><div class="kicker">Implantação</div><h2 class="title">{{implementation.title}}</h2><div class="grid"><div class="card"><h3>{{implementation.cards.0.title}}</h3><p>{{implementation.cards.0.description}}</p></div><div class="card"><h3>{{implementation.cards.1.title}}</h3><p>{{implementation.cards.1.description}}</p></div><div class="card"><h3>{{implementation.cards.2.title}}</h3><p>{{implementation.cards.2.description}}</p></div></div></section>
-<section class="slide alt"><div class="kicker">Próximos passos</div><h2 class="title">{{next.title}}</h2><div class="grid"><div class="card"><h3>{{next.cards.0.title}}</h3><p>{{next.cards.0.description}}</p></div><div class="card"><h3>{{next.cards.1.title}}</h3><p>{{next.cards.1.description}}</p></div><div class="card"><h3>{{next.cards.2.title}}</h3><p>{{next.cards.2.description}}</p></div></div></section>
-<section class="slide cover"><div class="kicker">Contato</div><h2 class="title big">{{closing.title}}</h2><p class="subtitle">{{closing.subtitle}}</p><div class="footer"><span>{{metadata.consultantName}}</span><span>{{metadata.consultantRole}}</span></div></section>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{document.title}}</title>
+  <style>{{__css}}</style>
+</head>
+<body>
+  <section class="slide dark">
+    <div class="brand"><span class="brand-mark"></span>{{brand.name}}</div>
+    <div class="page-no">01</div>
+    <div class="cover-bg-word">{{cover.background_word}}</div>
+    <div class="content">
+      <div class="eyebrow">{{cover.eyebrow}}</div>
+      <h1 class="title-xl">{{cover.title_line_1}}<br><span class="highlight">{{cover.title_line_2}}</span></h1>
+      <p class="subtitle">{{cover.subtitle}}</p>
+    </div>
+    <div class="cover-bar"></div>
+    <div class="meta-row">
+      <div class="meta-box"><div class="meta-label">{{cover.meta_1_label}}</div><div class="meta-value">{{cover.meta_1_value}}</div></div>
+      <div class="meta-box"><div class="meta-label">{{cover.meta_2_label}}</div><div class="meta-value">{{cover.meta_2_value}}</div></div>
+      <div class="meta-box"><div class="meta-label">{{cover.meta_3_label}}</div><div class="meta-value">{{cover.meta_3_value}}</div></div>
+      <div class="meta-box"><div class="meta-label">{{cover.meta_4_label}}</div><div class="meta-value">{{cover.meta_4_value}}</div></div>
+    </div>
+  </section>
+
+  <section class="slide light-grad">
+    <div class="brand"><span class="brand-mark"></span>{{brand.name}}</div><div class="page-no">02</div>
+    <div class="content">
+      <div class="eyebrow">{{agenda.eyebrow}}</div>
+      <h2 class="title-md">{{agenda.title}}</h2>
+      <div class="rule"></div>
+      <div class="agenda-list">
+        <div class="agenda-row"><b>01</b><span>{{agenda.items.0}}</span></div>
+        <div class="agenda-row"><b>02</b><span>{{agenda.items.1}}</span></div>
+        <div class="agenda-row"><b>03</b><span>{{agenda.items.2}}</span></div>
+        <div class="agenda-row"><b>04</b><span>{{agenda.items.3}}</span></div>
+        <div class="agenda-row"><b>05</b><span>{{agenda.items.4}}</span></div>
+        <div class="agenda-row"><b>06</b><span>{{agenda.items.5}}</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="brand"><span class="brand-mark"></span>{{brand.name}}</div><div class="page-no">03</div>
+    <div class="content">
+      <div class="eyebrow">{{objective.eyebrow}}</div>
+      <div class="split">
+        <div class="statement">
+          <h2>{{objective.statement_title}}</h2>
+          <p class="subtitle">{{objective.statement_subtitle}}</p>
+        </div>
+        <div class="grid grid-2">
+          <div class="card"><span class="card-number">01</span><h3>{{objective.cards.0.title}}</h3><p>{{objective.cards.0.description}}</p></div>
+          <div class="card"><span class="card-number">02</span><h3>{{objective.cards.1.title}}</h3><p>{{objective.cards.1.description}}</p></div>
+          <div class="card"><span class="card-number">03</span><h3>{{objective.cards.2.title}}</h3><p>{{objective.cards.2.description}}</p></div>
+          <div class="card"><span class="card-number">04</span><h3>{{objective.cards.3.title}}</h3><p>{{objective.cards.3.description}}</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide dark">
+    <div class="brand"><span class="brand-mark"></span>{{brand.name}}</div><div class="page-no">04</div>
+    <div class="content">
+      <div class="eyebrow">{{context.eyebrow}}</div>
+      <h2 class="title-lg title-compact">{{context.title}}</h2>
+      <p class="subtitle">{{context.subtitle}}</p>
+      <div class="grid grid-4 context-cards">
+        <div class="card"><span class="card-number">01</span><h3>{{context.cards.0.title}}</h3><p>{{context.cards.0.description}}</p></div>
+        <div class="card"><span class="card-number">02</span><h3>{{context.cards.1.title}}</h3><p>{{context.cards.1.description}}</p></div>
+        <div class="card"><span class="card-number">03</span><h3>{{context.cards.2.title}}</h3><p>{{context.cards.2.description}}</p></div>
+        <div class="card"><span class="card-number">04</span><h3>{{context.cards.3.title}}</h3><p>{{context.cards.3.description}}</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="brand"><span class="brand-mark"></span>{{brand.name}}</div><div class="page-no">05</div>
+    <div class="content">
+      <div class="eyebrow">{{solution.eyebrow}}</div>
+      <h2 class="title-md">{{solution.title}}</h2>
+      <div class="grid grid-4" style="margin-top:42px">
+        <div class="card active"><span class="card-number">01</span><h3>{{solution.cards.0.title}}</h3><p>{{solution.cards.0.description}}</p></div>
+        <div class="card"><span class="card-number">02</span><h3>{{solution.cards.1.title}}</h3><p>{{solution.cards.1.description}}</p></div>
+        <div class="card"><span class="card-number">03</span><h3>{{solution.cards.2.title}}</h3><p>{{solution.cards.2.description}}</p></div>
+        <div class="card"><span class="card-number">04</span><h3>{{solution.cards.3.title}}</h3><p>{{solution.cards.3.description}}</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide light-grad">
+    <div class="brand"><span class="brand-mark"></span>{{brand.name}}</div><div class="page-no">06</div>
+    <div class="content">
+      <div class="eyebrow">{{included.eyebrow}}</div>
+      <h2 class="title-md">{{included.title}}</h2>
+      <div class="grid grid-3" style="margin-top:42px">
+        <div class="card dark-card"><span class="card-number">01</span><h3>{{included.cards.0.title}}</h3><p>{{included.cards.0.description}}</p></div>
+        <div class="card dark-card"><span class="card-number">02</span><h3>{{included.cards.1.title}}</h3><p>{{included.cards.1.description}}</p></div>
+        <div class="card dark-card"><span class="card-number">03</span><h3>{{included.cards.2.title}}</h3><p>{{included.cards.2.description}}</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="brand"><span class="brand-mark"></span>{{brand.name}}</div><div class="page-no">07</div>
+    <div class="content">
+      <div class="eyebrow">{{flow.eyebrow}}</div>
+      <h2 class="title-md">{{flow.title}}</h2>
+      <div class="flow">
+        <div class="card flow-card"><span class="card-number">01</span><h3>{{flow.steps.0.title}}</h3><p>{{flow.steps.0.description}}</p></div>
+        <div class="card flow-card"><span class="card-number">02</span><h3>{{flow.steps.1.title}}</h3><p>{{flow.steps.1.description}}</p></div>
+        <div class="card flow-card"><span class="card-number">03</span><h3>{{flow.steps.2.title}}</h3><p>{{flow.steps.2.description}}</p></div>
+        <div class="card flow-card"><span class="card-number">04</span><h3>{{flow.steps.3.title}}</h3><p>{{flow.steps.3.description}}</p></div>
+        <div class="card flow-card"><span class="card-number">05</span><h3>{{flow.steps.4.title}}</h3><p>{{flow.steps.4.description}}</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide light-grad">
+    <div class="brand"><span class="brand-mark"></span>{{brand.name}}</div><div class="page-no">08</div>
+    <div class="content">
+      <div class="eyebrow">{{commercial.eyebrow}}</div>
+      <h2 class="title-md">{{commercial.title}}</h2>
+      <div class="timeline">
+        <div class="card week"><span class="card-number">{{commercial.cards.0.label}}</span><h3>{{commercial.cards.0.title}}</h3><ul><li>{{commercial.cards.0.bullets.0}}</li><li>{{commercial.cards.0.bullets.1}}</li><li>{{commercial.cards.0.bullets.2}}</li></ul></div>
+        <div class="card week"><span class="card-number">{{commercial.cards.1.label}}</span><h3>{{commercial.cards.1.title}}</h3><ul><li>{{commercial.cards.1.bullets.0}}</li><li>{{commercial.cards.1.bullets.1}}</li><li>{{commercial.cards.1.bullets.2}}</li></ul></div>
+        <div class="card week"><span class="card-number">{{commercial.cards.2.label}}</span><h3>{{commercial.cards.2.title}}</h3><ul><li>{{commercial.cards.2.bullets.0}}</li><li>{{commercial.cards.2.bullets.1}}</li><li>{{commercial.cards.2.bullets.2}}</li></ul></div>
+        <div class="card week"><span class="card-number">{{commercial.cards.3.label}}</span><h3>{{commercial.cards.3.title}}</h3><ul><li>{{commercial.cards.3.bullets.0}}</li><li>{{commercial.cards.3.bullets.1}}</li><li>{{commercial.cards.3.bullets.2}}</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide dark">
+    <div class="brand"><span class="brand-mark"></span>{{brand.name}}</div><div class="page-no">09</div>
+    <div class="content">
+      <div class="eyebrow">{{final.eyebrow}}</div>
+      <h2 class="title-lg">{{final.title}}</h2>
+      <p class="subtitle">{{final.subtitle}}</p>
+      <div class="final-steps">
+        <div class="step-row">{{final.steps.0}}</div>
+        <div class="step-row">{{final.steps.1}}</div>
+        <div class="step-row">{{final.steps.2}}</div>
+      </div>
+    </div>
+    <div class="contact-card">
+      <h3>{{contact.name}}</h3>
+      <p>{{contact.role}}</p>
+      <div class="rule"></div>
+      <p>{{contact.email}}</p>
+      <p>{{contact.phone}}</p>
+    </div>
+  </section>
+</body>
+</html>

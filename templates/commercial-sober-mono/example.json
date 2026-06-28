@@ -1,121 +1,114 @@
 {
-  "metadata": {
-    "clientName": "Colégio Objetivo",
-    "issuerName": "Tecno School Center",
-    "audience": "Diretoria",
-    "consultantName": "Rodolfo Silva",
-    "consultantRole": "Solutions Consultant"
+  "document": {
+    "title": "Tecno School Center - Proposta Contact Center Colégio Objetivo"
+  },
+  "brand": {
+    "name": "Tecno School Center"
   },
   "cover": {
-    "eyebrow": "Proposta comercial",
-    "title": "Contact Center com Recepcionista IA",
-    "subtitle": "Solução para qualificar o atendimento telefônico do Colégio Objetivo."
+    "background_word": "CC",
+    "eyebrow": "Proposta Comercial",
+    "title_line_1": "Contact Center",
+    "title_line_2": "Colégio Objetivo",
+    "subtitle": "Atendimento escolar com IA, triagem inteligente e gestão em tempo real.",
+    "meta_1_label": "Público",
+    "meta_1_value": "Diretoria",
+    "meta_2_label": "Plano",
+    "meta_2_value": "16 licenças",
+    "meta_3_label": "Mensalidade",
+    "meta_3_value": "R$ 1.758,40",
+    "meta_4_label": "Validade",
+    "meta_4_value": "30 dias"
   },
   "agenda": {
-    "title": "O que vamos cobrir",
+    "eyebrow": "Agenda",
+    "title": "O que esta proposta cobre.",
     "items": [
-      "Contexto e desafio",
+      "Contexto do atendimento escolar",
       "Solução proposta",
-      "Plano comercial"
+      "Recursos incluídos",
+      "Plano comercial",
+      "Implantação e desconto",
+      "Próximos passos"
+    ]
+  },
+  "objective": {
+    "eyebrow": "Objetivo",
+    "statement_title": "Elevar o padrão do atendimento do colégio.",
+    "statement_subtitle": "A proposta centraliza contatos, organiza filas e entrega visibilidade para gestão.",
+    "cards": [
+      { "title": "Mais agilidade", "description": "Triagem inicial com IA para reduzir espera e repasses manuais." },
+      { "title": "Direcionamento", "description": "Chamadas encaminhadas ao departamento correto desde o início." },
+      { "title": "Gestão clara", "description": "Supervisor acompanha operação, filas e produtividade em tempo real." },
+      { "title": "Experiência melhor", "description": "Famílias, alunos e responsáveis recebem atendimento mais organizado." }
     ]
   },
   "context": {
-    "title": "Atendimento com mais triagem e direção",
+    "eyebrow": "Contexto",
+    "title": "Atendimento escolar exige controle e agilidade.",
+    "subtitle": "A diretoria precisa ter previsibilidade sobre volume, espera e qualidade do atendimento.",
     "cards": [
-      {
-        "title": "Entrada telefônica",
-        "description": "Organiza chamadas recebidas e reduz dependência de repasses manuais."
-      },
-      {
-        "title": "Intenção do contato",
-        "description": "Entende demandas recorrentes antes de direcionar ao departamento."
-      },
-      {
-        "title": "Visão executiva",
-        "description": "Proposta objetiva para decisão da diretoria."
-      }
+      { "title": "Muitos contatos", "description": "Secretaria, financeiro e coordenação recebem demandas simultâneas." },
+      { "title": "Triagem manual", "description": "A equipe precisa entender o motivo antes de encaminhar." },
+      { "title": "Baixa visibilidade", "description": "Sem painéis, fica difícil medir fila, abandono e produtividade." },
+      { "title": "Experiência variável", "description": "Responsáveis podem receber respostas diferentes conforme o canal." }
     ]
   },
   "solution": {
-    "title": "Recepcionista IA integrada ao contact center",
-    "description": "Atendimento telefônico com entendimento de intenção, triagem e direcionamento por departamento.",
+    "eyebrow": "Solução",
+    "title": "Contact Center com recepcionista IA para o Colégio Objetivo.",
     "cards": [
-      {
-        "title": "Triagem inicial",
-        "description": "Classifica o motivo do contato com linguagem natural."
-      },
-      {
-        "title": "Direcionamento",
-        "description": "Encaminha para o setor adequado com mais contexto."
-      },
-      {
-        "title": "Operação assistida",
-        "description": "15 usuários e 1 supervisor para acompanhar a rotina."
-      }
+      { "title": "Recepcionista IA", "description": "Atende, entende intenções e inicia a triagem pelo telefone." },
+      { "title": "Filas e URA", "description": "Organiza chamadas por departamento, horário e necessidade." },
+      { "title": "Supervisão", "description": "Painel em tempo real para acompanhar operação e agentes." },
+      { "title": "Relatórios com IA", "description": "Indicadores avançados para análise e gestão da qualidade." }
     ]
   },
-  "benefits": {
-    "title": "Benefícios esperados",
+  "included": {
+    "eyebrow": "Recursos incluídos",
+    "title": "Pacote completo para atendimento e gestão.",
     "cards": [
-      {
-        "title": "Menos espera",
-        "description": "Fluxo inicial mais claro para quem liga ao colégio."
-      },
-      {
-        "title": "Padronização",
-        "description": "Atendimento inicial consistente entre departamentos."
-      },
-      {
-        "title": "Escalabilidade",
-        "description": "Licenças preparadas para operação diária da equipe."
-      }
+      { "title": "16 licenças", "description": "15 usuários operacionais e 1 supervisor incluído no plano." },
+      { "title": "15 aparelhos grátis", "description": "Aparelhos IP IA Link P31G incluídos sem custo adicional." },
+      { "title": "Qualidade", "description": "Gestão de qualidade, painel avançado e agente mix para operação." }
+    ]
+  },
+  "flow": {
+    "eyebrow": "Fluxo",
+    "title": "Da chamada recebida ao departamento correto.",
+    "steps": [
+      { "title": "Entrada", "description": "Responsável liga para o colégio." },
+      { "title": "IA", "description": "Recepcionista entende a intenção." },
+      { "title": "Triagem", "description": "Classifica a demanda inicial." },
+      { "title": "Fila", "description": "Encaminha ao setor correto." },
+      { "title": "Gestão", "description": "Dados alimentam relatórios." }
     ]
   },
   "commercial": {
-    "title": "Plano comercial proposto",
-    "monthly_label": "Mensalidade",
-    "monthly_total": "R$ 1.758,40",
-    "setup_label": "Implantação",
-    "implementation_final": "R$ 1.500,00",
-    "details": "16 licenças a R$ 109,90; 15 aparelhos IA Link P31G grátis.",
-    "validity": "Validade: 30 dias"
-  },
-  "implementation": {
-    "title": "Escopo de implantação",
+    "eyebrow": "Plano comercial",
+    "title": "Condições da proposta para assinatura.",
     "cards": [
-      {
-        "title": "Configuração",
-        "description": "Parametrização dos fluxos de atendimento e departamentos."
-      },
-      {
-        "title": "Ativação",
-        "description": "Preparação das licenças e aparelhos incluídos na proposta."
-      },
-      {
-        "title": "Acompanhamento",
-        "description": "Suporte inicial para ajuste fino da operação."
-      }
+      { "label": "Licenças", "title": "16 totais", "bullets": ["15 usuários", "1 supervisor", "R$ 109,90 cada"] },
+      { "label": "Mensal", "title": "R$ 1.758,40", "bullets": ["Valor recorrente", "Contact center", "Recursos inclusos"] },
+      { "label": "Aparelhos", "title": "Sem custo", "bullets": ["15 IA Link P31G", "Inclusos no plano", "Valor promocional"] },
+      { "label": "Implantação", "title": "R$ 1.500,00", "bullets": ["De R$ 3.000,00", "50% de desconto", "Validade: 30 dias"] }
     ]
   },
-  "next": {
-    "title": "Próximos passos",
-    "cards": [
-      {
-        "title": "Validar proposta",
-        "description": "Confirmar escopo, valores e validade comercial."
-      },
-      {
-        "title": "Planejar início",
-        "description": "Definir responsáveis e agenda de implantação."
-      },
-      {
-        "title": "Formalizar aceite",
-        "description": "Avançar para contratação e ativação do projeto."
-      }
+  "final": {
+    "eyebrow": "Próximos passos",
+    "title": "Pronto para modernizar o atendimento do colégio?",
+    "subtitle": "Com o aceite, iniciamos configuração, ativação dos usuários e acompanhamento inicial.",
+    "steps": [
+      "Validar escopo e condições comerciais",
+      "Confirmar departamentos, filas e URA",
+      "Definir data de implantação"
     ]
   },
-  "closing": {
-    "title": "Obrigado",
-    "subtitle": "Tecno School Center à disposição para apoiar a evolução do atendimento."
+  "contact": {
+    "name": "Rodolfo Silva",
+    "role": "Solutions Consultant",
+    "email": "rodolfo.silva@tecnoschool.center",
+    "phone": "+55 11 99999-9999"
   }
 }
+
