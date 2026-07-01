@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import type { Dequi } from "@/data/mockData";
 import { recentAccesses } from "@/data/mockData";
 import { Thumbnail } from "./Cards";
 
@@ -14,6 +15,14 @@ export function RecentAccessList() {
   return <div className="recentBox"><div className="boxHead"><h4>Acessos recentes</h4><a>Ver todos</a></div>{recentAccesses.map(a => <div className="access" key={a.email}><span>◉</span><b>{a.email}</b><time>{a.date}</time></div>)}</div>;
 }
 
+export function SharePanel({ dequi, onClose }: { dequi: Dequi; onClose: () => void }) {
+  const [tab, setTab] = useState("Link");
+  const [copied, setCopied] = useState(false);
+  const shareUrl = `https://getdequi.com/d/${dequi.id}`;
+  async function copy() { await navigator.clipboard?.writeText(shareUrl); setCopied(true); setTimeout(() => setCopied(false), 1800); }
+  return <aside className="sharePanel" role="dialog" aria-modal="true" aria-label="Compartilhar Dequi">
+    <header className="shareHeader"><h2>Compartilhar Dequi</h2><button onClick={onClose} aria-label="Fechar compartilhamento">×</button></header>
+    <div className="selectedDequi"><div className="miniThumb"><Thumbnail title={dequi.thumbnailTitle} subtitle={dequi.thumbnailSubtitle} theme={dequi.theme} /></div><strong>{dequi.name}</strong></div>
 export function SharePanel() {
   const [tab, setTab] = useState("Link");
   const [copied, setCopied] = useState(false);
