@@ -1,8 +1,9 @@
 "use client";
 import { useMemo, useState } from "react";
 import { dequis as initialDequis, folders as initialFolders, templates as initialTemplates, type Dequi, type DequiStatus, type Folder, type Template } from "@/data/mockData";
-import { DequiGrid, Folders, HeaderStatsCard, SearchAndActions, TemplateGrid } from "./Cards";
+import { DequiGrid, Folders, SearchAndActions, TemplateGrid } from "./Cards";
 import { SharePanel } from "./SharePanel";
+import { BarsIcon, GridIcon } from "./HeroIcons";
 
 type DialogState =
   | { type: "folder"; mode: "create"; item?: Folder }
@@ -26,7 +27,7 @@ export function DashboardClient() {
   const [statusFilter, setStatusFilter] = useState<DequiStatus | "Todos">("Todos");
   const [dialog, setDialog] = useState<DialogState>(null);
   const [shareDequi, setShareDequi] = useState<Dequi | null>(initialDequis[0]);
-  const [toast, setToast] = useState("Pronto para criar, editar, compartilhar e excluir Dequis.");
+  const [toast, setToast] = useState("");
 
   const filteredDequis = useMemo(() => dequis.filter(item => {
     const matchesText = item.name.toLowerCase().includes(query.toLowerCase()) || item.thumbnailSubtitle.toLowerCase().includes(query.toLowerCase());
@@ -86,10 +87,10 @@ export function DashboardClient() {
 
   return <>
     <section className="workspace">
-      <div className="heroRow"><div><h1>Olá, Rodolfo 👋</h1><p>Aqui está o resumo dos seus Dequis e atividades.</p><span className="toast">{toast}</span></div><div className="stats"><HeaderStatsCard title="Seu plano" value="Pro" caption="Válido até 18/07/2026" tone="primary" /><HeaderStatsCard title="Dequis criados" value={`${dequis.length} / 25`} caption={`${Math.round((dequis.length / 25) * 100)}% do limite utilizado`} tone="teal" /></div></div>
+      <div className="heroRow"><div><h1>Olá, Rodolfo</h1><p>Aqui está o resumo dos seus Dequis e atividades.</p>{toast && <span className="toast">{toast}</span>}</div></div>
       <SearchAndActions query={query} onQueryChange={setQuery} onFilter={() => setStatusFilter(statusFilter === "Todos" ? "Publicado" : statusFilter === "Publicado" ? "Em desenvolvimento" : statusFilter === "Em desenvolvimento" ? "Rascunho" : "Todos")} onCreateFolder={() => setDialog({ type: "folder", mode: "create" })} onCreateDequi={() => setDialog({ type: "dequi", mode: "create" })} />
       <section className="section"><h2>Pastas</h2><Folders folders={folders} onCreate={() => setDialog({ type: "folder", mode: "create" })} onEdit={(item) => setDialog({ type: "folder", mode: "edit", item })} onDelete={deleteFolder} /></section>
-      <section className="section bigGap"><div className="sectionHead"><div><h2>Meus Dequis</h2><div className="tabs"><button className={statusFilter === "Todos" ? "active" : ""} onClick={() => setStatusFilter("Todos")}>Todos</button><button onClick={() => setStatusFilter("Publicado")}>Recentes</button><button onClick={() => setStatusFilter("Rascunho")}>Favoritos</button></div></div><div className="viewTools"><select defaultValue="recentes"><option value="recentes">Mais recentes</option></select><button className="active">▦</button><button>▤</button></div></div><DequiGrid dequis={filteredDequis} onOpenShare={setShareDequi} onEdit={(item) => setDialog({ type: "dequi", mode: "edit", item })} onDelete={deleteDequi} onToggleFavorite={(item) => setDequis(items => items.map(current => current.id === item.id ? { ...current, favorite: !current.favorite } : current))} /></section>
+      <section className="section bigGap"><div className="sectionHead"><div><h2>Meus Dequis</h2><div className="tabs"><button className={statusFilter === "Todos" ? "active" : ""} onClick={() => setStatusFilter("Todos")}>Todos</button><button onClick={() => setStatusFilter("Publicado")}>Recentes</button><button onClick={() => setStatusFilter("Rascunho")}>Favoritos</button></div></div><div className="viewTools"><select defaultValue="recentes"><option value="recentes">Mais recentes</option></select><button className="active" aria-label="Visualização em grade"><GridIcon className="buttonIcon" /></button><button aria-label="Visualização em lista"><BarsIcon className="buttonIcon" /></button></div></div><DequiGrid dequis={filteredDequis} onOpenShare={setShareDequi} onEdit={(item) => setDialog({ type: "dequi", mode: "edit", item })} onDelete={deleteDequi} onToggleFavorite={(item) => setDequis(items => items.map(current => current.id === item.id ? { ...current, favorite: !current.favorite } : current))} /></section>
       <section className="section templates"><div className="sectionHead inline"><h2>Templates recomendados</h2><button className="linkButton" onClick={() => setToast("Lista completa de templates será conectada ao backend.")}>Ver todos</button></div><TemplateGrid templates={templates} onUse={useTemplate} onEdit={(item) => setDialog({ type: "template", mode: "edit", item })} onDelete={deleteTemplate} /></section>
     </section>
     {shareDequi && <SharePanel dequi={shareDequi} onClose={() => setShareDequi(null)} />}
@@ -99,7 +100,7 @@ export function DashboardClient() {
 
 function CrudDialog({ dialog, onClose, onSaveFolder, onSaveDequi, onSaveTemplate }: { dialog: Exclude<DialogState, null>; onClose: () => void; onSaveFolder: (event: React.FormEvent<HTMLFormElement>) => void; onSaveDequi: (event: React.FormEvent<HTMLFormElement>) => void; onSaveTemplate: (event: React.FormEvent<HTMLFormElement>) => void }) {
   const title = dialog.mode === "create" ? (dialog.type === "folder" ? "Criar pasta" : "Criar Dequi") : `Editar ${dialog.type === "folder" ? "pasta" : dialog.type === "dequi" ? "Dequi" : "template"}`;
-  return <div className="modalBackdrop"><div className="crudModal" role="dialog" aria-modal="true"><header><h2>{title}</h2><button onClick={onClose}>×</button></header>
+  return <div className="modalBackdrop"><div className="crudModal" role="dialog" aria-modal="true"><header><h2>{title}</h2><button onClick={onClose} aria-label="Fechar">Fechar</button></header>
     {dialog.type === "folder" && <form onSubmit={onSaveFolder}><label>Nome<input name="name" defaultValue={dialog.item?.name ?? ""} required /></label><label>Quantidade<input name="count" type="number" min="0" defaultValue={dialog.item?.count ?? 0} /></label><div className="modalActions"><button type="button" onClick={onClose}>Cancelar</button><button type="submit">Salvar</button></div></form>}
     {dialog.type === "dequi" && <form onSubmit={onSaveDequi}><label>Nome<input name="name" defaultValue={dialog.item?.name ?? ""} required /></label><label>Subtítulo do thumbnail<input name="subtitle" defaultValue={dialog.item?.thumbnailSubtitle ?? ""} /></label><label>Status<select name="status" defaultValue={dialog.item?.status ?? "Rascunho"}><option>Publicado</option><option>Em desenvolvimento</option><option>Rascunho</option></select></label><div className="modalActions"><button type="button" onClick={onClose}>Cancelar</button><button type="submit">Salvar</button></div></form>}
     {dialog.type === "template" && <form onSubmit={onSaveTemplate}><label>Nome<input name="name" defaultValue={dialog.item.name} required /></label><label>Slides<input name="slides" type="number" min="1" defaultValue={dialog.item.slides} /></label><div className="modalActions"><button type="button" onClick={onClose}>Cancelar</button><button type="submit">Salvar</button></div></form>}
