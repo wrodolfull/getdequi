@@ -17,6 +17,7 @@ body {
   width: 1280px;
   background: #ebe9e4;
   font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 400;
   color: var(--ink);
 }
 
@@ -333,3 +334,27 @@ h1,h2,h3,p { margin:0; }
 .context-cards .card h3 { font-size:25px; line-height:1.08; margin-bottom:10px; }
 .context-cards .card p { font-size:17px; line-height:1.28; }
 
+
+/* Typography: Inter Medium (500) for titles and Inter Regular (400) for body text. */
+h1,h2,h3,
+.brand,
+.eyebrow,
+.title-xl,
+.title-lg,
+.title-md,
+.title-compact,
+.card h3,
+.statement h2,
+.contact-card h3,
+.context-cards .card h3 { font-weight:500; }
+
+p,li,span,
+.subtitle,
+.card p,
+.week ul,
+.contact-card p,
+.footer-note,
+.meta-label,
+.meta-value,
+.agenda-row span,
+.step-row { font-weight:400; }
