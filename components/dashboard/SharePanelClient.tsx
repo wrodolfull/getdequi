@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { Dequi } from "@/data/mockData";
 import { recentAccesses } from "@/data/mockData";
 import { Thumbnail } from "./Cards";
+import { ArrowDownTrayIcon, ChevronDownIcon, LinkIcon, QrCodeIcon, ShareIcon, UserCircleIcon, XMarkIcon } from "./HeroIcons";
 
 const tabs = ["Link", "Incorporar", "LinkedIn", "E-mail", "Permissões"];
 
@@ -30,7 +31,7 @@ export function RecentAccessList() {
       </div>
       {recentAccesses.map((access) => (
         <div className="access" key={access.email}>
-          <span>◉</span>
+          <span><UserCircleIcon className="accessIcon" /></span>
           <b>{access.email}</b>
           <time>{access.date}</time>
         </div>
@@ -59,7 +60,7 @@ export function SharePanel({ dequi, onClose }: SharePanelProps) {
     <aside className="sharePanel" role="dialog" aria-modal="true" aria-label="Compartilhar Dequi">
       <header className="shareHeader">
         <h2>Compartilhar Dequi</h2>
-        <button onClick={onClose} aria-label="Fechar compartilhamento" type="button">×</button>
+        <button onClick={onClose} aria-label="Fechar compartilhamento" type="button"><XMarkIcon className="buttonIcon" /></button>
       </header>
 
       <div className="selectedDequi">
@@ -94,14 +95,19 @@ export function SharePanel({ dequi, onClose }: SharePanelProps) {
                   <strong>Qualquer pessoa com o link pode visualizar</strong>
                   <span>Não é necessário login para acessar</span>
                 </div>
-                <b>⌄</b>
+                <b><ChevronDownIcon className="buttonIcon" /></b>
               </div>
 
               <h4>Opções de compartilhamento</h4>
               <div className="shareActions">
-                {["Abrir link", "Compartilhar", "Baixar PDF", "QR Code"].map((action) => (
-                  <button key={action} type="button">
-                    ◇<span>{action}</span>
+                {[
+                  { label: "Abrir link", Icon: LinkIcon },
+                  { label: "Compartilhar", Icon: ShareIcon },
+                  { label: "Baixar PDF", Icon: ArrowDownTrayIcon },
+                  { label: "QR Code", Icon: QrCodeIcon },
+                ].map(({ label, Icon }) => (
+                  <button key={label} type="button">
+                    <Icon className="shareActionIcon" /><span>{label}</span>
                   </button>
                 ))}
               </div>

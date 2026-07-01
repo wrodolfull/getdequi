@@ -177,3 +177,18 @@ nav{display:grid;gap:8px}
 .modalActions button[type=submit]{background:var(--primary);border-color:var(--primary);color:#fff}
 .shareHeader button:hover,.crudModal header button:hover,.miniAction:hover,.templateActions button:hover{filter:brightness(.96)}
 
+.sideIcon,.fieldIcon,.buttonIcon,.accessIcon,.shareActionIcon{width:20px;height:20px;flex:0 0 auto}
+.sideItem.active{background:var(--primary-soft);color:var(--primary);box-shadow:none}
+.brandMark{width:22px;height:22px;border-radius:8px;background:var(--primary);display:inline-block;filter:none;position:relative}
+.brandMark:after{content:"";position:absolute;right:-7px;top:4px;width:14px;height:14px;border-radius:5px;background:#86a7ff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.folderIcon svg,.miniAction svg,.dequiCard footer svg,.star svg{width:18px;height:18px;display:block}
+.star{width:36px;height:36px;display:grid;place-items:center;color:#71809a}
+.dequiCard footer span{display:inline-flex;align-items:center;gap:6px}
+.dequiCard footer button{display:grid;place-items:center;width:24px;height:24px}
+.viewTools button{display:grid;place-items:center;min-width:44px;padding:10px}
+.shareHeader button{display:grid;place-items:center;width:36px;height:36px}
+.permission b{display:grid;place-items:center;color:#526079}
+.shareActions button{display:grid;place-items:center;align-content:center}
+.shareActionIcon{margin:0 auto;color:var(--primary)}
+.accessIcon{color:var(--primary)}
