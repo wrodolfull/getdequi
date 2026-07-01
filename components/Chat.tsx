@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import { BriefingSummary } from "./BriefingSummary";
 import { TemplateSelector } from "./TemplateSelector";
 import { OutlinePreview } from "./OutlinePreview";
@@ -198,7 +198,7 @@ export function Chat() {
           type="file"
           accept="audio/*,.mp3,.mp4,.mpeg,.mpga,.m4a,.wav,.webm"
           disabled={busy || isRecording}
-          onChange={(event: Event) => {
+          onChange={(event: ChangeEvent<HTMLInputElement>) => {
             const file = (event.target as HTMLInputElement).files?.[0];
             if (file) transcribeAudio(file);
             (event.target as HTMLInputElement).value = "";
@@ -211,7 +211,7 @@ export function Chat() {
       {audioStatus && <p className="muted">{audioStatus}</p>}
       {statusMessage && <p className="muted" role="alert">{statusMessage}</p>}
       <label className="fieldLabel" htmlFor="briefing-text">Briefing em texto</label>
-      <textarea id="briefing-text" value={briefing} onChange={(e: Event) => setBriefing((e.target as HTMLTextAreaElement).value)} />
+      <textarea id="briefing-text" value={briefing} onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setBriefing(e.target.value)} />
       <p><button onClick={interpret} disabled={busy || isRecording || !briefing.trim()}>{busy ? "Processando..." : "Interpretar briefing"}</button></p>
     </div>
     <BriefingSummary interpretation={interpretation} />
