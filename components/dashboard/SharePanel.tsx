@@ -5,6 +5,7 @@ import { recentAccesses } from "@/data/mockData";
 import { Thumbnail } from "./Cards";
 
 const tabs = ["Link", "Incorporar", "LinkedIn", "E-mail", "Permissões"];
+const shareUrl = "https://getdequi.com/d/s3k8f7h2-nova-solucao";
 
 export function ShareTab({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
   return <button className={`shareTab ${active ? "active" : ""}`} onClick={onClick}>{label}</button>;
@@ -22,6 +23,13 @@ export function SharePanel({ dequi, onClose }: { dequi: Dequi; onClose: () => vo
   return <aside className="sharePanel" role="dialog" aria-modal="true" aria-label="Compartilhar Dequi">
     <header className="shareHeader"><h2>Compartilhar Dequi</h2><button onClick={onClose} aria-label="Fechar compartilhamento">×</button></header>
     <div className="selectedDequi"><div className="miniThumb"><Thumbnail title={dequi.thumbnailTitle} subtitle={dequi.thumbnailSubtitle} theme={dequi.theme} /></div><strong>{dequi.name}</strong></div>
+export function SharePanel() {
+  const [tab, setTab] = useState("Link");
+  const [copied, setCopied] = useState(false);
+  async function copy() { await navigator.clipboard?.writeText(shareUrl); setCopied(true); setTimeout(() => setCopied(false), 1800); }
+  return <aside className="sharePanel">
+    <header className="shareHeader"><h2>Compartilhar Dequi</h2><button>×</button></header>
+    <div className="selectedDequi"><div className="miniThumb"><Thumbnail title="Proposta Comercial" subtitle="Nova Solução" theme="teal" /></div><strong>Proposta Comercial – Nova Solução</strong></div>
     <div className="shareContent"><nav className="shareTabs">{tabs.map(t => <ShareTab key={t} label={t} active={tab === t} onClick={() => setTab(t)} />)}</nav><section className="shareMain">
       {tab === "Link" ? <>
         <div className="sectionIntro"><h3>Link da apresentação</h3><p>Compartilhe sua apresentação com um link público.</p></div>
